@@ -18,8 +18,6 @@ vpc:
         id: subnet-0ff7ac635b710ae85
       us-east-1d:
         id: subnet-0584f388ca671c05b
-      us-east-1e:
-        id: subnet-0b462a318d4ff5e26
       us-east-1f:
         id: subnet-039ebfae92e83d83f
 

@@ -17,11 +17,11 @@ vpc:
       us-east-1c:
         id: subnet-0ff7ac635b710ae85
       us-east-1d:
-        id: subnet-039ebfae92e83d83f
+        id: subnet-0584f388ca671c05b
       us-east-1e:
         id: subnet-0b462a318d4ff5e26
       us-east-1f:
-        id: subnet-0584f388ca671c05b
+        id: subnet-039ebfae92e83d83f
 
 iam:
   withOIDC: true
@@ -45,8 +45,6 @@ nodeGroups:
 addons:
   - name: vpc-cni
     version: latest
-    attachPolicyARNs:
-      - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
     podIdentityAssociations:
       - serviceAccountName: aws-node
         namespace: kube-system
@@ -62,3 +60,6 @@ addons:
     version: latest
     attachPolicyARNs:
       - arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy
+
+  - name: eks-pod-identity-agent
+    version: latest

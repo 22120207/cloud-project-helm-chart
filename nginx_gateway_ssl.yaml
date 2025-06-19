@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  namespace: web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+      - name: gateway
+        image: 992382421164.dkr.ecr.us-east-1.amazonaws.com/nginx_gateway_ssl:latest
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        env:
+        - name: DOMAIN
+          value: "inventory.caotienminh.software"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+  namespace: web-app
+spec:
+  selector:
+    app: gateway
+  ports:
+    - port: 80
+      targetPort: 80
+    - port: 443
+      targetPort: 443
+  type: LoadBalancer
